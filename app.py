@@ -1,17 +1,13 @@
+import os
 from flask import Flask, request, send_file, render_template
 from mp_api.client import MPRester
 from pymatgen.analysis.diffraction.xrd import XRDCalculator
 from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
 import pandas as pd
-import os
-import matplotlib
-# Use the prebuilt font cache
-os.environ['MPLCONFIGDIR'] =os.path.dirname(__file__)
-
 
 app = Flask(__name__)
 
-API_KEY = os.getenv("MAPI_KEY")
+API_KEY = os.getenv("MAPI_KEY")  # Ensure you're using environment variables
 
 @app.route('/')
 def index():
@@ -54,5 +50,6 @@ def generate_csv():
             os.remove(file_path)
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if PORT is not set
-    app.run(host="0.0.0.0", port=port, debug=True)
+    # Use the PORT environment variable provided by Render, default to 5000 if not set
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
