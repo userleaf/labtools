@@ -6,8 +6,8 @@ import pandas as pd
 import os
 import matplotlib
 # Use the prebuilt font cache
-cachedir = os.path.join(os.path.dirname(__file__))
-matplotlib.rcParams['cachedir'] = cachedir
+os.environ['MPLCONFIGDIR'] =os.path.dirname(__file__)
+
 
 app = Flask(__name__)
 
