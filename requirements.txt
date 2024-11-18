@@ -1,0 +1,4 @@
+flask
+pymatgen
+mp-api
+pandas
